@@ -1,3 +1,4 @@
+
 export type ComponentId = 'cpu' | 'gpu' | 'ram' | 'motherboard' | 'psu' | 'storage' | 'cooler';
 
 export interface ComponentSpec {
@@ -18,18 +19,37 @@ export interface PCComponentData {
   category: string;
   subtitle: string;
   icon: string;
-  color: string; // Hexadecimal de Tailwind o nombre de color
+  color: string;
   glowColor: string;
-  position: [number, number, number]; // Posición 3D por defecto
-  explodedOffset: [number, number, number]; // Vector de desplazamiento en vista explotada (despiece)
+  position: [number, number, number];
+  explodedOffset: [number, number, number];
   rotation?: [number, number, number];
   scale?: [number, number, number];
   shortSummary: string;
   detailedSpecs: ComponentSpec[];
   performanceMetrics: MetricData[];
   defaultExplanation: string;
-  thermalTemp: number; // En grados Celsius para la superposición térmica
+  thermalTemp: number;
   powerDrawWatts: number;
+}
+
+// ==========================================
+// INVENTARIO DE COMPONENTES
+// ==========================================
+
+export interface InventoryComponent {
+  id: string;
+  componentId: ComponentId;
+  name: string;
+  subtitle: string;
+  imageUrl: string;
+  thermalTemp: number;
+  powerDrawWatts: number;
+  detailedSpecs: ComponentSpec[];
+  performanceMetrics: MetricData[];
+  shortSummary: string;
+  defaultExplanation: string;
+  compatibilityNotes: string[];
 }
 
 export type ViewMode = 'standard' | 'exploded' | 'signal_flow' | 'thermal';
